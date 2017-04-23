@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
@@ -17,7 +18,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func textToSpeechTouchUpInside(_ sender: Any) {
-        print("Text Field: " + myTextField.text!)
+        let utterace = AVSpeechUtterance(string: myTextField.text ?? "")
+        utterace.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterace.rate = 0.5
+        
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.speak(utterace)
     }
 }
 
